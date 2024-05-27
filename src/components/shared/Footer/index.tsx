@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Bell, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
+import CustomButton from "../CustomButton";
 
 const Footer = () => {
   return (
-    <main className="w-full bg-slate-300 px-4 shadow-lg mt-10 py-2 -mb-2">
+    <main className="w-full bg-slate-300 px-4 shadow-lg mt-10 py-4 -mb-2">
       <footer className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-center md:text-left mb-4 md:mb-3">
           <Link href="/">
@@ -27,7 +28,11 @@ const Footer = () => {
             placeholder="Email Address"
             className="p-2 border-2 mb-2 outline-none border-slate-700 focus:border-slate-950 rounded-md bg-transparent"
           />
-          <Button>Subscribe</Button>
+          <CustomButton
+            icon={<Bell />}
+            title="Subscribe"
+            otherStyles="bg-slate-300"
+          />
         </div>
         <div className="mt-4 md:mt-0">
           <p className="text-slate-800 mb-2 md:text-left text-center">

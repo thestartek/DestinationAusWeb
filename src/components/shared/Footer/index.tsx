@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
@@ -7,7 +7,9 @@ const Footer = () => {
     <main className="w-full bg-slate-300 px-4 shadow-lg mt-10 py-2 -mb-2">
       <footer className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-center md:text-left mb-4 md:mb-3">
-          <p className="text-2xl font-semibold text-center">Startek AU</p>
+          <Link href="/">
+            <p className="text-2xl font-semibold text-center">Startek AU</p>
+          </Link>
           <p className="mt-4 text-gray-500 text-center">
             &copy; {new Date().getFullYear()} Startek x{" "}
             <Link

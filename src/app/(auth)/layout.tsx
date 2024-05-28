@@ -1,19 +1,27 @@
-import { Urbanist } from "next/font/google";
 import { PropsWithChildren } from "react";
+import { Urbanist } from "next/font/google";
+import { Toaster } from "sonner";
+import { Metadata } from "next";
+import "../globals.css";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
-const AuthLayout = ({ children }: PropsWithChildren) => {
-  return (
-    <div
-      className={`${urbanist.className} h-screen flex items-center justify-center bg-slate-200 dark:bg-slate-800`}
-    >
-      {children}
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Signin | Dashboard",
 };
 
-export default AuthLayout;
+export default function AuthLayout({ children }: PropsWithChildren) {
+  return (
+    <html lang="en">
+      <body
+        className={`${urbanist.className} h-screen flex items-center justify-center`}
+      >
+        <Toaster position="bottom-center" richColors />
+        {children}
+      </body>
+    </html>
+  );
+}

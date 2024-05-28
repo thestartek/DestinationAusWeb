@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -25,7 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.className} bg-slate-200 dark:bg-slate-800`}>
+      <body className={`${manrope.className} bg-slate-100 dark:bg-slate-800`}>
+        <Toaster position="bottom-center" richColors />
         <Header />
         {children}
         <Footer />

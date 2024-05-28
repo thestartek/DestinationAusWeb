@@ -5,11 +5,20 @@ type CustomButtonProps = {
   title: string;
   icon: React.JSX.Element;
   otherStyles?: string;
+  type?: "submit";
 };
 
-const CustomButton = ({ title, icon, otherStyles }: CustomButtonProps) => {
+const CustomButton = ({
+  title,
+  type,
+  icon,
+  otherStyles,
+}: CustomButtonProps) => {
   return (
-    <button className={`bg-slate-300 ${styles.button} ${otherStyles}`}>
+    <button
+      type={type}
+      className={`bg-slate-300 ${styles.button} ${otherStyles}`}
+    >
       <span className="text-slate-950">{title}</span>{" "}
       <div className={`bg-primary ${styles.icon}`}>{icon}</div>
     </button>

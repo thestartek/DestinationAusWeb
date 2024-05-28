@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { Bell, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 import CustomButton from "../CustomButton";
 
 const Footer = () => {
   return (
-    <main className="w-full bg-slate-300 px-4 shadow-lg mt-10 py-4 -mb-2">
+    <main className="w-full bg-slate-200 px-4 shadow-lg mt-10 py-4 -mb-2">
       <footer className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-center md:text-left mb-4 md:mb-3">
           <Link href="/">

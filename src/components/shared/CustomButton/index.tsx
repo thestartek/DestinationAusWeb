@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import styles from "./customButton.module.css";
 import React from "react";
 

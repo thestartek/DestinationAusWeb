@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/admin/dashboard"];
+const protectedRoutes = ["/"];
 
 // later set this to a global context variable
 let isAuthenticated = false;

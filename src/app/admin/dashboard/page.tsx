@@ -1,5 +1,11 @@
+import { Sidebar } from "@/components/DashboardComponents";
+
 const AdminDashboard = () => {
-  return <div>AdminDashboard</div>;
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  );
 };
 
 export default AdminDashboard;

@@ -1,5 +1,11 @@
+import TopBar from "./TopBar";
+
 const Sidebar = () => {
-  return <div>Sidebar</div>;
+  return (
+    <div>
+      <TopBar />
+    </div>
+  );
 };
 
 export default Sidebar;

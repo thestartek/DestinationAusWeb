@@ -2,7 +2,7 @@ import { Sidebar } from "@/components/DashboardComponents";
 
 const AdminDashboard = () => {
   return (
-    <div>
+    <div className="h-screen">
       <Sidebar />
     </div>
   );

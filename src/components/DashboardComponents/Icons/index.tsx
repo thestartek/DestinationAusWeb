@@ -39,8 +39,8 @@ export const DashboardIcon = ({ className, onClick, mode }: IconProps) => {
   return (
     <button onClick={onClick} className={className}>
       <svg
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -68,8 +68,8 @@ export const BlogsIcon = ({ className, onClick, mode }: IconProps) => {
   return (
     <button onClick={onClick} className={className}>
       <svg
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +97,8 @@ export const NewsIcon = ({ className, onClick, mode }: IconProps) => {
   return (
     <button onClick={onClick} className={className}>
       <svg
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +116,8 @@ export const FAQIcon = ({ className, onClick, mode }: IconProps) => {
   return (
     <button onClick={onClick} className={className}>
       <svg
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -137,8 +137,8 @@ export const ProfileIcon = ({ className, onClick, mode }: IconProps) => {
   return (
     <button onClick={onClick} className={className}>
       <svg
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -163,8 +163,8 @@ export const SignOutIcon = ({ className, onClick, mode }: IconProps) => {
   return (
     <button onClick={onClick} className={className}>
       <svg
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         viewBox="0 0 36 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

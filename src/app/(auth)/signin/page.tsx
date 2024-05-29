@@ -63,7 +63,11 @@ const SignIn = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="someone@example.com" {...field} />
+                    <Input
+                      placeholder="someone@example.com"
+                      type="email"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -76,7 +80,11 @@ const SignIn = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="someone@example.com" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

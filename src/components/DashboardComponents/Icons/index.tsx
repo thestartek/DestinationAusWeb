@@ -35,9 +35,9 @@ export const ShowSidebarIcon = ({ className, onClick }: IconProps) => {
   );
 };
 
-export const DashboardIcon = ({ className, onClick, mode }: IconProps) => {
+export const DashboardIcon = ({ className, mode }: IconProps) => {
   return (
-    <button onClick={onClick} className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -60,13 +60,13 @@ export const DashboardIcon = ({ className, onClick, mode }: IconProps) => {
           stroke-linejoin="round"
         />
       </svg>
-    </button>
+    </div>
   );
 };
 
-export const BlogsIcon = ({ className, onClick, mode }: IconProps) => {
+export const BlogsIcon = ({ className, mode }: IconProps) => {
   return (
-    <button onClick={onClick} className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -89,13 +89,13 @@ export const BlogsIcon = ({ className, onClick, mode }: IconProps) => {
           stroke-linejoin="round"
         />
       </svg>
-    </button>
+    </div>
   );
 };
 
-export const NewsIcon = ({ className, onClick, mode }: IconProps) => {
+export const NewsIcon = ({ className, mode }: IconProps) => {
   return (
-    <button onClick={onClick} className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -108,13 +108,13 @@ export const NewsIcon = ({ className, onClick, mode }: IconProps) => {
           fill={mode === "light" ? "#020617" : "#E2E8F0"}
         />
       </svg>
-    </button>
+    </div>
   );
 };
 
-export const FAQIcon = ({ className, onClick, mode }: IconProps) => {
+export const FAQIcon = ({ className, mode }: IconProps) => {
   return (
-    <button onClick={onClick} className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -129,13 +129,13 @@ export const FAQIcon = ({ className, onClick, mode }: IconProps) => {
           />
         </g>
       </svg>
-    </button>
+    </div>
   );
 };
 
-export const ProfileIcon = ({ className, onClick, mode }: IconProps) => {
+export const ProfileIcon = ({ className, mode }: IconProps) => {
   return (
-    <button onClick={onClick} className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -155,13 +155,13 @@ export const ProfileIcon = ({ className, onClick, mode }: IconProps) => {
           stroke-width="2"
         />
       </svg>
-    </button>
+    </div>
   );
 };
 
-export const SignOutIcon = ({ className, onClick, mode }: IconProps) => {
+export const SignOutIcon = ({ className, mode }: IconProps) => {
   return (
-    <button onClick={onClick} className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -177,13 +177,13 @@ export const SignOutIcon = ({ className, onClick, mode }: IconProps) => {
           stroke-linejoin="round"
         />
       </svg>
-    </button>
+    </div>
   );
 };
 
 export const SearchIcon = ({ className }: IconProps) => {
   return (
-    <button className={className}>
+    <div className={className}>
       <svg
         width="24"
         height="24"
@@ -196,7 +196,7 @@ export const SearchIcon = ({ className }: IconProps) => {
           fill="#94A3B8"
         />
       </svg>
-    </button>
+    </div>
   );
 };
 

@@ -22,7 +22,7 @@ const Search = ({ className, setSearchQuery, searchQuery }: SearchProps) => {
       />
       <SearchIcon className="absolute top-1 left-1 pointer-events-none" />
       <GoIcon
-        className="absolute top-0 right-0 cursor-pointer"
+        className="absolute top-0 right-0 cursor-pointer rounded-lg overflow-hidden"
         disabled={searchQuery === ""}
         onClick={showSearchResults}
       />

@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import {
   BlogsIcon,
   DashboardIcon,
@@ -8,36 +9,46 @@ import {
 } from "../Icons";
 import SidebarOption from "./SidebarOption";
 import TopBar from "./TopBar";
+import SignOut from "./SignOut";
 
-const Sidebar = () => {
+const Sidebar = ({ children }: PropsWithChildren) => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen">
       <TopBar />
       <div className="flex h-full">
         <div className="flex flex-col justify-between mx-2">
           <div className="flex flex-col gap-2">
             <SidebarOption
+              href="/admin/dashboard"
               icon={<DashboardIcon mode="light" />}
               title="Dashboard"
             />
-            <SidebarOption icon={<NewsIcon mode="light" />} title="News" />
-            <SidebarOption icon={<BlogsIcon mode="light" />} title="Blogs" />
-            <SidebarOption icon={<FAQIcon mode="light" />} title="FAQs" />
+            <SidebarOption
+              href="/admin/dashboard/news"
+              icon={<NewsIcon mode="light" />}
+              title="News"
+            />
+            <SidebarOption
+              href="/admin/dashboard/blogs"
+              icon={<BlogsIcon mode="light" />}
+              title="Blogs"
+            />
+            <SidebarOption
+              href="/admin/dashboard/faqs"
+              icon={<FAQIcon mode="light" />}
+              title="FAQs"
+            />
           </div>
           <div className="mb-4 flex flex-col gap-2">
             <SidebarOption
+              href="/admin/dashboard/profile"
               icon={<ProfileIcon mode="light" />}
               title="Profile"
             />
-            <SidebarOption
-              icon={<SignOutIcon mode="light" />}
-              title="Sign Out"
-            />
+            <SignOut icon={<SignOutIcon mode="light" />} title="Sign Out" />
           </div>
         </div>
-        <div className="bg-slate-100 w-full rounded-xl p-4">
-          Dashboard contents
-        </div>
+        <div className="bg-slate-100 w-full rounded-xl p-4">{children}</div>
       </div>
     </div>
   );

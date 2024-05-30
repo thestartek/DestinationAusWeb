@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "sonner";
+import { Sidebar } from "@/components/DashboardComponents";
 
 export const metadata: Metadata = {
   title: { template: "%s | Dashboard", default: "Admin Dashboard" },
@@ -17,7 +18,9 @@ const AdminLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en">
       <Toaster position="bottom-center" richColors />
-      <body className={urbanist.className}>{children}</body>
+      <body className={urbanist.className}>
+        <Sidebar>{children}</Sidebar>
+      </body>
     </html>
   );
 };

@@ -20,7 +20,7 @@ const Search = ({ className, setSearchQuery, searchQuery }: SearchProps) => {
         className="h-8 px-10"
         onChange={(event) => setSearchQuery(event.target.value)}
       />
-      <SearchIcon className="absolute top-1 left-1" />
+      <SearchIcon className="absolute top-1 left-1 pointer-events-none" />
       <GoIcon
         className="absolute top-0 right-0 cursor-pointer"
         disabled={searchQuery === ""}

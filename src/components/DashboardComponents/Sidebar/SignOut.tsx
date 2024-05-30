@@ -1,26 +1,24 @@
-import Link from "next/link";
+"use client";
 
-type SidebarOptionProps = {
+type SignOutProps = {
   icon: JSX.Element;
   title: string;
   className?: string;
-  href: string;
 };
 
-const SidebarOption = ({
-  icon,
-  title,
-  className,
-  href,
-}: SidebarOptionProps) => {
+const SignOut = ({ icon, title, className }: SignOutProps) => {
+  const signOut = () => {
+    console.log("Signing out");
+  };
+
   return (
-    <Link
-      href={href}
+    <button
+      onClick={signOut}
       className={`flex items-center justify-start w-[14rem] gap-2 px-3 py-3 rounded-xl hover:bg-[#FEF08A] cursor-pointer ${className}`}
     >
       {icon} <span className="select-none">{title}</span>
-    </Link>
+    </button>
   );
 };
 
-export default SidebarOption;
+export default SignOut;

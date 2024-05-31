@@ -17,7 +17,7 @@ const TopBar = ({ setShowSidebar, className, showSidebar }: TopBarProps) => {
 
   return (
     <div
-      className={`flex items-center gap-24 mx-2 md:py-0 py-2 z-20 ${className}`}
+      className={`flex items-center gap-24 px-2 md:py-0 py-2 z-20 ${className}`}
     >
       <SidebarLogo className="md:flex hidden" />
       <div className="flex items-center justify-between flex-1">

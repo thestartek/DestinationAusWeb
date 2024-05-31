@@ -69,11 +69,19 @@ const Sidebar = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen">
-      <TopBar setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
-      <div className="flex h-full relative">
+    <div
+      className={`flex flex-col h-screen ${
+        showSidebar ? "overflow-hidden" : ""
+      }`}
+    >
+      <TopBar
+        setShowSidebar={setShowSidebar}
+        showSidebar={showSidebar}
+        className="md:sticky md:top-0 bg-white"
+      />
+      <div className="flex">
         <div
-          className={`sidebar flex flex-col justify-between mx-2 absolute md:static z-20 px-2 bg-white h-full rounded-r-2xl md:rounded-none transition-all ease-in-out duration-500 ${
+          className={`sidebar flex flex-col justify-between mx-2 absolute md:sticky md:top-[4.1rem] z-20 px-2 bg-white h-[90vh] rounded-r-2xl md:rounded-none transition-all ease-in-out duration-500 ${
             showSidebar ? "-left-2" : "-left-[80%]"
           }`}
         >
@@ -135,8 +143,8 @@ const Sidebar = ({ children }: PropsWithChildren) => {
           </div>
         </div>
         <div
-          className={`bg-slate-100 outside w-full rounded-xl p-4 transition-all ease-in-out duration-500 flex flex-col gap-2 ${
-            showSidebar ? "blur-sm md:blur-none" : ""
+          className={`bg-slate-100 w-full rounded-xl p-4 transition-all ease-in-out duration-500 flex flex-col gap-2 ${
+            showSidebar ? "blur-sm md:blur-none pointer-events-none" : ""
           }`}
         >
           <Breadcrumb className="w-full bg-white px-4 py-2 rounded-xl">

@@ -1,5 +1,11 @@
+import { NewsController } from "@/components/DashboardComponents";
+
 const DashboardNews = () => {
-  return <div>DashboardNews</div>;
+  return (
+    <div>
+      <NewsController />
+    </div>
+  );
 };
 
 export default DashboardNews;

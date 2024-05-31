@@ -2,7 +2,7 @@ import { BlogController } from "@/components/DashboardComponents";
 
 const DashboardBlogs = () => {
   return (
-    <div>
+    <div className="h-fit">
       <BlogController />
     </div>
   );

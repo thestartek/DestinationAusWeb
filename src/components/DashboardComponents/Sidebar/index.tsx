@@ -1,7 +1,7 @@
 "use client";
 
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   BlogsIcon,
   DashboardIcon,
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 const Sidebar = ({ children }: PropsWithChildren) => {
+  const router = useRouter();
   const pathname = usePathname();
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -42,9 +43,6 @@ const Sidebar = ({ children }: PropsWithChildren) => {
     if (!target.closest(".sidebar") && !sidebarRef.current?.contains(target)) {
       setShowSidebar(false);
     }
-    if (target.closest(".links") && !sidebarRef.current?.contains(target)) {
-      setShowSidebar(false);
-    }
   };
 
   const handleEscapeKey = (event: KeyboardEvent) => {
@@ -55,8 +53,9 @@ const Sidebar = ({ children }: PropsWithChildren) => {
 
   // Close sidebar when route changes
   useEffect(() => {
-    setShowSidebar(false);
-  }, [pathname]);
+    router.push(pathname);
+    return setShowSidebar(false);
+  }, [pathname, router]);
 
   // Close sidebar when clicked outside and on escape key press
   useEffect(() => {

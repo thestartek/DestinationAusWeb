@@ -1,5 +1,11 @@
+import FormController from "../FormController";
+
 const BlogController = () => {
-  return <div>BlogControl</div>;
+  return (
+    <div>
+      <FormController title="Blog" />
+    </div>
+  );
 };
 
 export default BlogController;

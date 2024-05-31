@@ -18,7 +18,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 
 type FormControllerProps = {
   title: string;
@@ -49,7 +48,6 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 }
 
 const FormController = ({ title }: FormControllerProps) => {
-  const router = useRouter();
   const [preview, setPreview] = useState<string>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -64,10 +62,6 @@ const FormController = ({ title }: FormControllerProps) => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("form values: ", values);
-    if (form.formState.isSubmitSuccessful) {
-      form.reset();
-      router.push(`${title.toLowerCase()}/23498725kdsjf`);
-    }
   }
 
   return (

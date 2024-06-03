@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/"];
+const protectedRoutes = [
+  "/admin/dashboard",
+  "/admin/dashboard/blogs",
+  "/admin/dashboard/news",
+  "/admin/dashboard/faqs",
+  "/admin/dashboard/profile",
+];
 
 // later set this to a global context variable
-let isAuthenticated = false;
+let isAuthenticated = true;
 
 export default function middleware(req: NextRequest) {
   if (!isAuthenticated && protectedRoutes.includes(req.nextUrl.pathname)) {

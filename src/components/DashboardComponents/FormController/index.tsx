@@ -1,5 +1,6 @@
 "use client";
 
+import { v4 as uuidv4 } from "uuid";
 import { Check, CloudUpload, Loader2, Upload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChangeEvent, useState } from "react";
@@ -33,22 +34,14 @@ const formSchema = z.object({
 });
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
-  // FileList is immutable, so we need to create a new one
-  const dataTransfer = new DataTransfer();
-
-  // Add newly uploaded images
-  Array.from(event.target.files!).forEach((image) =>
-    dataTransfer.items.add(image)
-  );
-
-  const files = dataTransfer.files;
   const displayUrl = URL.createObjectURL(event.target.files![0]);
 
-  return { files, displayUrl };
+  return displayUrl;
 }
 
 const FormController = ({ title }: FormControllerProps) => {
   const [preview, setPreview] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,8 +53,9 @@ const FormController = ({ title }: FormControllerProps) => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("form values: ", values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const newFileName = uuidv4() + "." + file?.name.split(".").pop();
+    console.log("file: ", file);
   }
 
   return (
@@ -69,6 +63,7 @@ const FormController = ({ title }: FormControllerProps) => {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="my-4 flex flex-col gap-4"
+        method="POST"
       >
         <h2 className="text-2xl font-semibold mb-2 text-center">
           Create {title}
@@ -113,14 +108,14 @@ const FormController = ({ title }: FormControllerProps) => {
                   <Input
                     type="file"
                     onChange={(event) => {
-                      const { files, displayUrl } = getImageData(event);
+                      const displayUrl = getImageData(event);
                       setPreview(displayUrl);
+                      setFile(event.target.files![0]);
                       onChange(displayUrl);
-                      console.log("Display Url", displayUrl);
                     }}
-                    className="h-40 flex items-center justify-center cursor-pointer outline outline-4 outline-primary ring-0"
+                    className="h-40 flex items-center justify-center cursor-pointer outline-dashed outline-4 outline-primary ring-0"
                   />
-                  {value ? (
+                  {value !== "" ? (
                     <Image
                       src={preview}
                       width={100}

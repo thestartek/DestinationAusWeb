@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

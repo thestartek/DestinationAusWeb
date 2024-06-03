@@ -77,7 +77,7 @@ const Sidebar = ({ children }: PropsWithChildren) => {
       <TopBar
         setShowSidebar={setShowSidebar}
         showSidebar={showSidebar}
-        className="md:sticky md:top-0 bg-white"
+        className="md:sticky md:top-0 bg-white z-50"
       />
       <div className="flex">
         <div

@@ -95,7 +95,7 @@ const SignIn = () => {
             type="submit"
             icon={<SendHorizontal />}
             title="Sign In"
-            otherStyles="mx-auto"
+            className="mx-auto"
           />
         </form>
       </Form>

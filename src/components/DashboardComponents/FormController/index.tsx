@@ -3,7 +3,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { Check, CloudUpload, Loader2, Upload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { z } from "zod";
@@ -19,6 +19,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "sonner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type FormControllerProps = {
   title: string;
@@ -40,6 +43,7 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 }
 
 const FormController = ({ title }: FormControllerProps) => {
+  const router = useRouter();
   const [preview, setPreview] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -54,8 +58,36 @@ const FormController = ({ title }: FormControllerProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const newFileName = uuidv4() + "." + file?.name.split(".").pop();
-    console.log("file: ", file);
+    const formData = new FormData();
+    formData.append("file", file!);
+    formData.append("title", values.title);
+    formData.append("description", values.description);
+    formData.append("imageUrl", values.imageUrl);
+
+    if (values.source !== undefined && values.source !== "")
+      formData.append("source", values.source);
+    if (!file) {
+      console.log("No file selected");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        toast.success("Blog created successfully!");
+        form.reset();
+        setPreview("");
+        setFile(null);
+        setTimeout(() => {
+          router.push("/blogs");
+        }, 1000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -63,7 +95,6 @@ const FormController = ({ title }: FormControllerProps) => {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="my-4 flex flex-col gap-4"
-        method="POST"
       >
         <h2 className="text-2xl font-semibold mb-2 text-center">
           Create {title}
@@ -105,15 +136,16 @@ const FormController = ({ title }: FormControllerProps) => {
             <FormItem>
               <FormControl>
                 <div className="relative">
-                  <Input
+                  <input
                     type="file"
+                    name="image"
                     onChange={(event) => {
                       const displayUrl = getImageData(event);
                       setPreview(displayUrl);
                       setFile(event.target.files![0]);
                       onChange(displayUrl);
                     }}
-                    className="h-40 flex items-center justify-center cursor-pointer outline-dashed outline-4 outline-primary ring-0"
+                    className="h-40 flex items-center justify-center cursor-pointer outline-dashed outline-4 outline-primary ring-0 border-collapse"
                   />
                   {value !== "" ? (
                     <Image

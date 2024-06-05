@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { uploadHandler } from "../controllers/azure.controller.js";
+import { uploadHandler } from "../azure";
 
 const router = Router();
 

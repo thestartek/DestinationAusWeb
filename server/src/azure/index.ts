@@ -1,12 +1,13 @@
 import path from "path";
 import { BlobServiceClient } from "@azure/storage-blob";
+import { Request, Response } from "express";
 
-export async function uploadHandler(req, res) {
+export async function uploadHandler(req: Request, res: Response) {
   const { imageUrl, title, description } = req.body;
-  const file = req.file.path;
+  const file = req.file?.path;
   console.log("Data Received: ", imageUrl, title, description);
   try {
-    const url = await uploadToAzureStorage(file);
+    const url = await uploadToAzureStorage(file as string);
     console.log("uploaded url: ", url);
     res.status(200).json({ imageUrl: url });
   } catch (error) {
@@ -14,10 +15,11 @@ export async function uploadHandler(req, res) {
   }
 }
 
-async function uploadToAzureStorage(file) {
-  const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
+async function uploadToAzureStorage(file: string) {
+  const connectionString = process.env
+    .AZURE_STORAGE_CONNECTION_STRING as string;
   console.log("Connection String: ", connectionString);
-  const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;
+  const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME as string;
   const blobServiceClient =
     BlobServiceClient.fromConnectionString(connectionString);
   const containerClient = blobServiceClient.getContainerClient(containerName);

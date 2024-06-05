@@ -1,9 +1,8 @@
 "use client";
 
-import { v4 as uuidv4 } from "uuid";
 import { Check, CloudUpload, Loader2, Upload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { z } from "zod";
@@ -20,7 +19,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 
 type FormControllerProps = {
@@ -72,18 +70,19 @@ const FormController = ({ title }: FormControllerProps) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch("/api/blogs", {
         method: "POST",
         body: formData,
       });
       if (response.ok) {
+        console.log(response);
         toast.success("Blog created successfully!");
         form.reset();
         setPreview("");
         setFile(null);
-        setTimeout(() => {
-          router.push("/blogs");
-        }, 1000);
+        // setTimeout(() => {
+        //   router.push("/blogs");
+        // }, 1000);
       }
     } catch (error) {
       console.error(error);

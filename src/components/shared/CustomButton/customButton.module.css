@@ -1,0 +1,36 @@
+.button {
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  border-radius: 8px;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.button .icon {
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 8px;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.button:active .icon {
+  transform: scale(0.95);
+}

@@ -1,5 +1,5 @@
 export const blogType = `#graphql
-    type BLOG {
+    type Blog {
         id: ID!
         title: String!
         description: String!

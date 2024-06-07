@@ -7,6 +7,7 @@ import cors from "cors";
 import { blogType, faqType, newsType, userType } from "./types";
 import { blogQueries, faqQuery, newsQueries, userQueries } from "./queries";
 import { blogMutation, faqMutation, newsMutation } from "./mutations";
+import { getAllBlogs, getBlog, createBlog } from "./resolvers";
 
 export async function GraphQL() {
   const app = express();
@@ -35,6 +36,15 @@ export async function GraphQL() {
             ${faqMutation}
           }
       `,
+    resolvers: {
+      Query: {
+        getAllBlogs,
+        getBlog,
+      },
+      Mutation: {
+        createBlog,
+      },
+    },
   });
 
   await graphQLServer.start();

@@ -1,6 +1,65 @@
-import { userType } from "./userType";
-import { blogType } from "./blogType";
-import { faqType } from "./faqType";
-import { newsType } from "./newsType";
+export const userType = `#graphql
+    type User {
+        id: ID!
+        firstName: String!
+        lastName: String!
+        email: String!
+        password: String!
+        profilePicture: String
+        createdAt: String
+        blogs: [Blog]
+        news: [News]
+        isVerified: Boolean
+    }
+`;
 
-export { newsType, faqType, blogType, userType };
+export const newsType = `#graphql
+    type News {
+        id: ID!
+        title: String!
+        description: String!
+        imageUrl: String
+        source: String
+        creator: User
+        createdAt: String
+    }
+    input CreateNewsInput {
+        title: String!
+        description: String!
+        imageUrl: String
+        source: String
+    }
+`;
+
+export const faqType = `#graphql
+    type FAQ {
+        id: ID!
+        question: String!
+        answer: String!
+    }
+    input CreateFaqInput {
+        question: String!
+        answer: String!
+    }
+`;
+
+export const blogType = `#graphql
+    type Blog {
+        id: ID!
+        title: String!
+        description: String!
+        imageUrl: String
+        source: String
+        creator: User
+        createdAt: String
+    }
+    input CreateBlogInput {
+        title: String!
+        description: String!
+        imageUrl: String
+    }
+    type Query {
+        blogs: [Blog]
+        blog: Blog
+    }
+`;

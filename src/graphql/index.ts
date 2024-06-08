@@ -1,13 +1,12 @@
+import { getAllBlogs, getBlog, createBlog } from "./resolvers/blog.resolver";
 import { expressMiddleware } from "@apollo/server/express4";
-import { ApolloServer } from "@apollo/server";
 import bodyParser from "body-parser";
 import express from "express";
 import cors from "cors";
-
+import { ApolloServer } from "@apollo/server";
 import { blogType, faqType, newsType, userType } from "./types";
 import { blogQueries, faqQuery, newsQueries, userQueries } from "./queries";
 import { blogMutation, faqMutation, newsMutation } from "./mutations";
-import { getAllBlogs, getBlog, createBlog } from "./resolvers";
 
 export async function GraphQL() {
   const app = express();
@@ -18,28 +17,28 @@ export async function GraphQL() {
 
   const graphQLServer = new ApolloServer({
     typeDefs: `
-          ${userType}
-          ${blogType}
-          ${newsType}
-          ${faqType}
+            ${userType}
+            ${blogType}
+            ${faqType}
+            ${newsType}
 
-          type Query {
-            ${userQueries}
-            ${blogQueries}
-            ${faqQuery}
-            ${newsQueries}
-          }
+            type Query {
+                ${userQueries}
+                ${blogQueries}
+                ${faqQuery}
+                ${newsQueries}
+            }
 
-          type Mutation {
-            ${blogMutation}
-            ${newsMutation}
-            ${faqMutation}
-          }
-      `,
+            type Mutation {
+                ${blogMutation}
+                ${newsMutation}
+                ${faqMutation}
+            }
+        `,
     resolvers: {
       Query: {
-        getAllBlogs,
-        getBlog,
+        blogs: getAllBlogs,
+        blog: getBlog,
       },
       Mutation: {
         createBlog,
@@ -49,7 +48,7 @@ export async function GraphQL() {
 
   await graphQLServer.start();
 
-  app.use("/api", expressMiddleware(graphQLServer));
+  app.use("/graphql", expressMiddleware(graphQLServer));
 
   return app;
 }

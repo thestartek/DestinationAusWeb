@@ -7,7 +7,7 @@ export const newsType = `#graphql
         source: String
         creator: User
     }
-    type CreateNews {
+    input CreateNews {
         title: String!
         description: String!
         imageUrl: String

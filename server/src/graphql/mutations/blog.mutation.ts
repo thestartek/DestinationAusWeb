@@ -1,5 +1,5 @@
 export const blogMutation = `#graphql
-    createBlog(payload: CreateBlog): Blog
+    createBlog({title, description, imageUrl, source}: CreateBlog): Blog
     updateBlog(id: ID!): Blog
     deleteBlog(id: ID!): Blog
 `;

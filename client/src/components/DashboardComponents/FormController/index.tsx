@@ -2,7 +2,7 @@
 
 import { Check, CloudUpload, Loader2, Upload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { z } from "zod";
@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@apollo/client";
+import { CREATE_BLOG } from "@/graphql/mutations";
 
 type FormControllerProps = {
   title: string;
@@ -41,6 +43,7 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
 }
 
 const FormController = ({ title }: FormControllerProps) => {
+  const [createBlog, { loading }] = useMutation(CREATE_BLOG);
   const router = useRouter();
   const [preview, setPreview] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
@@ -56,38 +59,40 @@ const FormController = ({ title }: FormControllerProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const formData = new FormData();
-    formData.append("file", file!);
-    formData.append("title", values.title);
-    formData.append("description", values.description);
-    formData.append("imageUrl", values.imageUrl);
+    // const formData = new FormData();
+    // formData.append("file", file!);
+    // formData.append("title", values.title);
+    // formData.append("description", values.description);
+    // formData.append("imageUrl", values.imageUrl);
 
-    if (values.source !== undefined && values.source !== "")
-      formData.append("source", values.source);
+    // if (values.source !== undefined && values.source !== "")
+    //   formData.append("source", values.source);
     if (!file) {
       console.log("No file selected");
       return;
     }
+    console.log(values);
 
-    try {
-      const response = await fetch("/api/blogs", {
-        method: "POST",
-        body: formData,
-      });
-      if (response.ok) {
-        console.log(response);
-        toast.success("Blog created successfully!");
-        form.reset();
-        setPreview("");
-        setFile(null);
-        // setTimeout(() => {
-        //   router.push("/blogs");
-        // }, 1000);
-      }
-    } catch (error) {
-      console.error(error);
+    const response = await createBlog({
+      variables: {
+        title: values.title,
+        description: values.description,
+        imageUrl: values.imageUrl,
+        source: values.source,
+      },
+    });
+
+    if (response.data) {
+      toast.success("Blog created successfully");
+      router.push("/");
+    } else {
+      toast.error("An error occured");
     }
   }
+
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
 
   return (
     <Form {...form}>

@@ -1,26 +1,26 @@
 {
   "name": "startek_server",
   "version": "1.0.0",
-  "description": "This server is created by pawandai.",
-  "type": "module",
+  "description": "Created by pawandai",
   "main": "server.js",
   "author": "pawandai",
   "license": "ISC",
   "scripts": {
-    "start": "node dist/server",
+    "start": "node ./dist/server",
     "build": "tsc -p .",
     "dev": "tsc-watch --onSuccess \"npm start\""
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
     "@azure/storage-blob": "^12.23.0",
-    "axios": "^1.7.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "graphql": "^16.8.1",
     "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {

@@ -1,5 +1,17 @@
-import { userQueries } from "./user.query";
-import { newsQueries } from "./news.query";
-import { blogQueries } from "./blog.query";
-import { faqQuery } from "./faq.query";
-export { faqQuery, blogQueries, newsQueries, userQueries };
+export const userQueries = `#graphql
+ getCurrentUser: User
+`;
+
+export const newsQueries = `#graphql
+    getAllNews: [News]
+    getNews(id: ID!): News
+`;
+
+export const faqQuery = `#graphql
+    getAllFAQs: [FAQ]
+`;
+
+export const blogQueries = `#graphql
+    getAllBlogs: [Blog]
+    getBlog(id: ID!): Blog
+`;

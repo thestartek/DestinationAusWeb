@@ -4,6 +4,8 @@ import "../globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "../(auth)/layout";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -29,7 +31,9 @@ export default function RootLayout({
       <body className={`${manrope.className} bg-slate-100 dark:bg-slate-800`}>
         <Toaster position="bottom-center" richColors />
         <Header />
+        {/* <ApolloProvider client={client}> */}
         {children}
+        {/* </ApolloProvider> */}
         <Footer />
       </body>
     </html>

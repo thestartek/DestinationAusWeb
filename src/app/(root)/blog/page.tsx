@@ -1,24 +1,25 @@
 "use client";
 
-import { useEffect } from "react";
+import { AnotherBlogCard, BlogCard } from "@/components/shared/BlogCard";
 
 const Blog = () => {
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await fetch("/api/blogs", {
-          method: "GET",
-        });
-        const data = await response.json();
-        console.log("Blogs fetched successfully: ", data);
-      } catch (error) {
-        console.log("Failed to fetch blogs: ", error);
-      }
-    };
-    fetchBlogs();
-  }, []);
+  const blogData = {
+    image: "/mountains.jpg",
+    title: "Sample Blog Post",
+    description: "This is a short description of the blog post...",
+    createdByUs: true,
+    comments: [
+      "Great post!",
+      "Really informative, thank you.",
+      "Loved the insights shared here.",
+    ],
+  };
 
-  return <div>Blog</div>;
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <BlogCard {...blogData} />
+    </div>
+  );
 };
 
 export default Blog;

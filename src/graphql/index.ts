@@ -34,11 +34,11 @@ export async function GraphQL() {
                 ${newsMutation}
                 ${faqMutation}
             }
-        `,
+            `,
     resolvers: {
       Query: {
-        blogs: getAllBlogs,
-        blog: getBlog,
+        getAllBlogs,
+        getBlog,
       },
       Mutation: {
         createBlog,

@@ -25,10 +25,7 @@ export const getBlog = async (id: string) => {
   }
 };
 
-export const createBlog = async (
-  parent: any,
-  { payload }: { payload: CreateBlog }
-) => {
+export const createBlog = async (payload: CreateBlog) => {
   try {
     await connectToDB();
     const blog = new Blog(payload);

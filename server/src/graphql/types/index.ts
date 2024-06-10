@@ -50,16 +50,11 @@ export const blogType = `#graphql
         description: String!
         imageUrl: String
         source: String
-        creator: User
-        createdAt: String
     }
     input CreateBlogInput {
         title: String!
         description: String!
         imageUrl: String
-    }
-    type Query {
-        blogs: [Blog]
-        blog: Blog
+        source: String
     }
 `;

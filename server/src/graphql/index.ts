@@ -17,28 +17,11 @@ export async function GraphQL() {
 
   const graphQLServer = new ApolloServer({
     typeDefs: `
-            ${userType}
             ${blogType}
-            ${faqType}
-            ${newsType}
-
-            type Query {
-                ${userQueries}
-                ${blogQueries}
-                ${faqQuery}
-                ${newsQueries}
-            }
-
-            type Mutation {
-                ${blogMutation}
-                ${newsMutation}
-                ${faqMutation}
-            }
-            `,
+      `,
     resolvers: {
       Query: {
         getAllBlogs,
-        getBlog,
       },
       Mutation: {
         createBlog,
@@ -48,7 +31,7 @@ export async function GraphQL() {
 
   await graphQLServer.start();
 
-  app.use("/graphql", expressMiddleware(graphQLServer));
+  app.use("/api", expressMiddleware(graphQLServer));
 
   return app;
 }

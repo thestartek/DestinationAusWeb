@@ -1,18 +1,9 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_BLOG = gql`
-  mutation createBlog(
-    $title: String!
-    $description: String!
-    $imageUrl: String!
-    $source: String
-  ) {
-    createBlog(
-      title: $title
-      description: $description
-      imageUrl: $imageUrl
-      source: $source
-    ) {
+  mutation createBlog($input: CreateBlogInput!) {
+    createBlog(input: $input) {
+      _id
       title
       description
       imageUrl

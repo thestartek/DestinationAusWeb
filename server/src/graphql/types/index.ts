@@ -48,8 +48,8 @@ export const blogType = `#graphql
         _id: ID!
         title: String!
         description: String!
-        imageUrl: String
-        source: String
+        imageUrl: String!
+        source: String!
     }
     input CreateBlogInput {
         title: String!
@@ -58,10 +58,10 @@ export const blogType = `#graphql
         source: String
     }
     type Query {
-        getAllBlogs: [Blog]
+        getAllBlogs: [Blog!]
         getBlog(id: ID!): Blog
     }
     type Mutation {
-        createBlog(input: CreateBlogInput): Blog
+        createBlog(input: CreateBlogInput!): Blog
     }
 `;

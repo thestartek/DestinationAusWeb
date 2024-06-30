@@ -1,12 +1,10 @@
-import { getAllBlogs, getBlog, createBlog } from "./resolvers/blog.resolver";
+import { getAllBlogs, createBlog } from "./resolvers/blog.resolver";
 import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServer } from "@apollo/server";
 import bodyParser from "body-parser";
+import { blogType } from "./types";
 import express from "express";
 import cors from "cors";
-import { ApolloServer } from "@apollo/server";
-import { blogType, faqType, newsType, userType } from "./types";
-import { blogQueries, faqQuery, newsQueries, userQueries } from "./queries";
-import { blogMutation, faqMutation, newsMutation } from "./mutations";
 
 export async function GraphQL() {
   const app = express();
@@ -16,9 +14,7 @@ export async function GraphQL() {
   app.use(express.static("uploads"));
 
   const graphQLServer = new ApolloServer({
-    typeDefs: `
-            ${blogType}
-      `,
+    typeDefs: blogType,
     resolvers: {
       Query: {
         getAllBlogs,

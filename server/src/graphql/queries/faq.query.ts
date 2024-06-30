@@ -1,3 +1,3 @@
-export const faqQuery = `#graphql
-    getAllFAQs: [FAQ]
-`;
+// export const faqQuery = `#graphql
+//     getAllFAQs: [FAQ]
+// `;

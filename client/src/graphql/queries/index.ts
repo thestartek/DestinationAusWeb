@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_BLOGS = gql`
-  query getAllBlogs {
-    blogs {
-      id
+  query GetAllBlogs {
+    getAllBlogs {
+      _id
       title
       description
       imageUrl
@@ -13,9 +13,9 @@ export const GET_ALL_BLOGS = gql`
 `;
 
 export const GET_BLOG = gql`
-  query getBlog($id: ID!) {
-    blog(id: $id) {
-      id
+  query GetBlog($id: ID!) {
+    getBlog(id: $id) {
+      _id
       title
       description
       imageUrl

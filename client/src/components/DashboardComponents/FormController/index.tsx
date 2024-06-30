@@ -28,7 +28,7 @@ type FormControllerProps = {
 };
 
 const formSchema = z.object({
-  title: z.string().min(20, { message: "Must be atleast twenty characters" }),
+  title: z.string().min(3, { message: "Must be atleast twenty characters" }),
   description: z
     .string()
     .min(20, { message: "Must be atleast twenty characters" }),
@@ -46,7 +46,6 @@ const FormController = ({ title }: FormControllerProps) => {
   const [createBlog, { loading }] = useMutation(CREATE_BLOG);
   const router = useRouter();
   const [preview, setPreview] = useState<string>("");
-  const [file, setFile] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,35 +58,22 @@ const FormController = ({ title }: FormControllerProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // const formData = new FormData();
-    // formData.append("file", file!);
-    // formData.append("title", values.title);
-    // formData.append("description", values.description);
-    // formData.append("imageUrl", values.imageUrl);
-
-    // if (values.source !== undefined && values.source !== "")
-    //   formData.append("source", values.source);
-    if (!file) {
-      console.log("No file selected");
-      return;
-    }
     console.log(values);
-
-    const response = await createBlog({
-      variables: {
-        title: values.title,
-        description: values.description,
-        imageUrl: values.imageUrl,
-        source: values.source,
-      },
-    });
-
-    if (response.data) {
+    try {
+      await createBlog({
+        variables: {
+          input: values,
+        },
+      });
       toast.success("Blog created successfully");
-      router.push("/");
-    } else {
-      toast.error("An error occured");
+      router.push("/blog");
+    } catch (error) {
+      console.log("Could not create blog: ", error);
     }
+
+    // if (response.data) {
+    //   toast.success("Blog created successfully");
+    //   router.push("/");}
   }
 
   // useEffect(() => {
@@ -146,7 +132,6 @@ const FormController = ({ title }: FormControllerProps) => {
                     onChange={(event) => {
                       const displayUrl = getImageData(event);
                       setPreview(displayUrl);
-                      setFile(event.target.files![0]);
                       onChange(displayUrl);
                     }}
                     className="h-40 flex items-center justify-center cursor-pointer outline-dashed outline-4 outline-primary ring-0 border-collapse"

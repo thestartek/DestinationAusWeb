@@ -4,8 +4,6 @@ import "../globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "../(auth)/layout";
 
 const manrope = Manrope({
   subsets: ["latin"],

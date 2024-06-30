@@ -8,15 +8,16 @@ type BlogCardProps = {
   image: string;
   title: string;
   description: string;
+  source: string;
   createdByUs: boolean;
-  comments: string[];
+  comments?: string[];
 };
 
 export function BlogCard({
   image,
   title,
   description,
-  createdByUs,
+  createdByUs = false,
   comments,
 }: BlogCardProps) {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -39,7 +40,12 @@ export function BlogCard({
         className="relative w-full h-48 cursor-pointer"
         onClick={handleCardClick}
       >
-        <Image src={image} alt={title} layout="fill" objectFit="cover" />
+        <Image
+          src={"/airplane1.svg"}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+        />
       </div>
       <div className="p-4">
         <h2 className="text-lg font-semibold truncate">{title}</h2>
@@ -79,7 +85,7 @@ export function BlogCard({
             </button>
             <h2 className="text-lg font-semibold mb-4">{title}</h2>
             <div className="space-y-4">
-              {comments.map((comment, index) => (
+              {comments?.map((comment, index) => (
                 <div key={index} className="p-2 bg-gray-100 rounded-lg">
                   <p className="text-gray-800">{comment}</p>
                 </div>
@@ -103,25 +109,25 @@ export function AnotherBlogCard({
 
   return (
     <main>
-      <div className="bg-white rounded-lg shadow-md mx-2 group border-primary border-2">
+      <div className="bg-white rounded-lg shadow-md mx-2 group border-primary border-2 max-w-[480px]">
         <Link href={`/blog`}>
           <AspectRatio
             ratio={16 / 9}
             className="overflow-hidden object-contain rounded-t-md"
           >
             <Image
-              src={`${image}`}
+              src={"/airplane1.svg"}
               alt={title}
               width={400}
               height={200}
               className="transition-all ease-in-out duration-500 mb-4 object-contain group-hover:scale-105"
             />
           </AspectRatio>
-          <h2 className="text-xl font-semibold my-2 px-2">{title}</h2>
+          <h2 className="text-xl font-semibold my-2 px-2 truncate">{title}</h2>
           <p className="text-muted-foreground text-sm px-2">
             {new Date().getFullYear()}
           </p>
-          <p className="px-2 mb-2">{description}</p>
+          <p className="px-2 mb-2 truncate">{description}</p>
         </Link>
       </div>
       <div className="bg-white p-4 rounded-lg shadow-md mx-4 mt-2 border-primary border-2">

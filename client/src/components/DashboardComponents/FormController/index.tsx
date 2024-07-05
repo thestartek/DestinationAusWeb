@@ -2,7 +2,7 @@
 
 import { Check, CloudUpload, Loader2, Upload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { z } from "zod";
@@ -37,9 +37,7 @@ const formSchema = z.object({
 });
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
-  const displayUrl = URL.createObjectURL(event.target.files![0]);
-
-  return displayUrl;
+  return URL.createObjectURL(event.target.files![0]);
 }
 
 const FormController = ({ title }: FormControllerProps) => {
@@ -70,15 +68,7 @@ const FormController = ({ title }: FormControllerProps) => {
     } catch (error) {
       console.log("Could not create blog: ", error);
     }
-
-    // if (response.data) {
-    //   toast.success("Blog created successfully");
-    //   router.push("/");}
   }
-
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
 
   return (
     <Form {...form}>
@@ -121,14 +111,14 @@ const FormController = ({ title }: FormControllerProps) => {
         />
         <FormField
           control={form.control}
-          name={"imageUrl"}
+          name="imageUrl"
           render={({ field: { onChange, value } }) => (
             <FormItem>
               <FormControl>
                 <div className="relative">
-                  <input
+                  <Input
                     type="file"
-                    name="image"
+                    name="imageUrl"
                     onChange={(event) => {
                       const displayUrl = getImageData(event);
                       setPreview(displayUrl);
@@ -185,14 +175,14 @@ const FormController = ({ title }: FormControllerProps) => {
         <CustomButton
           type="submit"
           title={
-            form.formState.isSubmitting
-              ? "Creating..."
+            loading
+              ? "Uploading Image..."
               : form.formState.isSubmitSuccessful
               ? "Created"
               : "Create"
           }
           icon={
-            form.formState.isSubmitting ? (
+            loading ? (
               <Loader2 className="animate-spin" />
             ) : form.formState.isSubmitSuccessful ? (
               <Check />
@@ -201,9 +191,7 @@ const FormController = ({ title }: FormControllerProps) => {
             )
           }
           className="w-fit self-center"
-          disabled={
-            form.formState.isSubmitting || form.formState.isSubmitSuccessful
-          }
+          disabled={loading || form.formState.isSubmitSuccessful}
         />
       </form>
     </Form>

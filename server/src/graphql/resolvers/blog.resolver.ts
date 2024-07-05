@@ -1,14 +1,12 @@
 import { connectToDB } from "../../db";
-import { dummyData } from "../../dummy";
 import { CreateBlog } from "../../interfaces";
 import Blog from "../../models/blog.model";
+import { uploadToAzureStorage } from "../../azure";
 
 export const getAllBlogs = async () => {
   try {
     await connectToDB();
-    const blogs = await Blog.find();
-    console.log("Blogs fetched successfully: ", blogs);
-    return blogs;
+    return await Blog.find();
   } catch (error) {
     console.log("Error while fetching blogs", error);
   }
@@ -26,13 +24,20 @@ export const getBlog = async (id: string) => {
 };
 
 export const createBlog = async (_: any, { input }: { input: CreateBlog }) => {
+  console.log("Input: ", input.imageUrl);
   try {
-    await connectToDB();
-    const blog = new Blog(input);
-    await blog.save();
-    console.log("Blog created successfully");
-    return blog;
+    const uploadResponse = await uploadToAzureStorage(input.imageUrl);
+    console.log("Image uploaded successfully", uploadResponse?.imageUrl);
+    try {
+      await connectToDB();
+      const blog = new Blog({ ...input, imageUrl: uploadResponse?.imageUrl });
+      await blog.save();
+      return blog;
+    } catch (error) {
+      console.log("Could not save to database: ", error);
+    }
+    return uploadResponse;
   } catch (error) {
-    console.log("Error on creating Blog: ", error);
+    console.log("Error on uploading Image: \n", error);
   }
 };

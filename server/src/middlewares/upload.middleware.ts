@@ -1,17 +1,15 @@
 import { Request } from "express";
 import multer from "multer";
-import path from "path";
 
 // Configure multer storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) =>
-    cb(null, Date.now() + path.extname(file.originalname)),
+  destination: (req, file, cb) => cb(null, "uploads"),
+  filename: (req, file, cb) => cb(null, Date.now() + file.originalname),
 });
 
 // Only allow images to be uploaded
 const fileTypes = (
-  req: Request,
+  _: Request,
   file: Express.Multer.File,
   cb: (arg1: Error | null, arg2?: boolean) => void
 ) => {

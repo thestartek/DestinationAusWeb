@@ -1,7 +1,6 @@
-import { connectToDB } from "../../db";
-import { CreateBlog } from "../../interfaces";
-import Blog from "../../models/blog.model";
-import { uploadToAzureStorage } from "../../azure";
+import { connectToDB } from "../../db/index.js";
+import { CreateBlog } from "../../interfaces/index.js";
+import Blog from "../../models/blog.model.js";
 
 export const getAllBlogs = async () => {
   try {
@@ -24,20 +23,12 @@ export const getBlog = async (id: string) => {
 };
 
 export const createBlog = async (_: any, { input }: { input: CreateBlog }) => {
-  console.log("Input: ", input.imageUrl);
   try {
-    const uploadResponse = await uploadToAzureStorage(input.imageUrl);
-    console.log("Image uploaded successfully", uploadResponse?.imageUrl);
-    try {
-      await connectToDB();
-      const blog = new Blog({ ...input, imageUrl: uploadResponse?.imageUrl });
-      await blog.save();
-      return blog;
-    } catch (error) {
-      console.log("Could not save to database: ", error);
-    }
-    return uploadResponse;
+    await connectToDB();
+    const blog = new Blog(input);
+    await blog.save();
+    return blog;
   } catch (error) {
-    console.log("Error on uploading Image: \n", error);
+    console.log("Could not save blog: \n", error);
   }
 };

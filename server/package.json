@@ -2,6 +2,7 @@
   "name": "startek_server",
   "version": "1.0.0",
   "description": "Created by pawandai",
+  "type": "module",
   "main": "server.js",
   "author": "pawandai",
   "license": "ISC",

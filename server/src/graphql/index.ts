@@ -1,16 +1,28 @@
+import { getAllBlogs, createBlog } from "./resolvers/blog.resolver.js";
 import { expressMiddleware } from "@apollo/server/express4";
-import { getAllBlogs, createBlog } from "./resolvers";
+// import { getAllBlogs, createBlog } from "./resolvers";
 import { ApolloServer } from "@apollo/server";
 import bodyParser from "body-parser";
-import { blogType } from "./types";
+// import { blogType } from "./types";
 import express from "express";
 import cors from "cors";
 import path from "path";
 import fs from "fs";
-import upload from "../middlewares/upload.middleware";
+// import upload from "../middlewares/upload.middleware";
+// import { uploadHandler } from "../azure";
+import { fileURLToPath } from "url";
+import { blogType } from "./types/index.js";
+import upload from "../middlewares/upload.middleware.js";
+import { uploadHandler } from "../azure/index.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ensure uploads directory exists
 const uploadDir = path.join(__dirname, "uploads");
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 export async function GraphQL() {
   const app = express();
@@ -37,7 +49,9 @@ export async function GraphQL() {
 
   await graphQLServer.start();
 
-  app.use("/api", upload.single("input"), expressMiddleware(graphQLServer));
+  app.post("/upload", upload.single("imageUrl"), uploadHandler);
+
+  app.use("/api", expressMiddleware(graphQLServer));
 
   return app;
 }

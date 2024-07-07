@@ -1,12 +1,5 @@
 import path from "path";
 import { BlobServiceClient, BlockBlobClient } from "@azure/storage-blob";
-import { Request, Response } from "express";
-
-export async function uploadHandler(req: Request, res: Response) {
-  const { data } = req.body;
-  const response = await uploadToAzureStorage(data);
-  return res.json(response);
-}
 
 export async function uploadToAzureStorage(file: string) {
   const connectionString: string = process.env

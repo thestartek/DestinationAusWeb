@@ -30,7 +30,7 @@ const Footer = () => {
           <CustomButton
             icon={<Bell />}
             title="Subscribe"
-            otherStyles="bg-slate-300"
+            className="bg-slate-300"
           />
         </div>
         <div className="mt-4 md:mt-0">

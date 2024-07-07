@@ -58,29 +58,17 @@ const FormController = ({ title }: FormControllerProps) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     try {
-      // await createBlog({
-      //   variables: {
-      //     input: values,
-      //   },
-      // });
-      // try {
-      const response = await fetch("http://localhost:5000/upload", {
-        method: "POST",
-        body: JSON.stringify({ data: values.imageUrl }),
-        headers: {
-          "Content-Type": "application/json",
+      await createBlog({
+        variables: {
+          input: values,
         },
       });
-      console.log("Image uploaded successfully: ", response);
+      toast.success("Blog created successfully");
+      // router.push("/blog");
     } catch (error) {
       toast.error("Could not upload image");
-      console.log("Error while uploading Image: ", error);
+      console.log("Something went wrong: ", error);
     }
-    // toast.success("Blog created successfully");
-    // router.push("/blog");
-    // } catch (error) {
-    //   console.log("Could not create blog: ", error);
-    // }
   }
 
   return (

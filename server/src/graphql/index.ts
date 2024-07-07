@@ -21,12 +21,7 @@ if (!fs.existsSync(uploadDir)) {
 
 export async function GraphQL() {
   const app = express();
-  app.use(
-    cors({
-      origin: "*",
-      credentials: true,
-    })
-  );
+  // app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 

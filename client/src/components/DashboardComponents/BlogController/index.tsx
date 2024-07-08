@@ -1,9 +1,33 @@
-import FormController from "../FormController";
+import { z } from "zod";
+import FormController, { formSchema } from "../FormController";
+import { toast } from "sonner";
+import { useMutation } from "@apollo/client";
+import { CREATE_BLOG } from "@/graphql/mutations";
+import { useRouter } from "next/navigation";
 
 const BlogController = () => {
+  const [createBlog, { loading }] = useMutation(CREATE_BLOG);
+  const router = useRouter();
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+    try {
+      await createBlog({
+        variables: {
+          input: values,
+        },
+      });
+      toast.success("Blog created successfully");
+      // router.push("/blog");
+    } catch (error) {
+      toast.error("Could not upload image");
+      console.log("Something went wrong: ", error);
+    }
+  }
+
   return (
     <div>
-      <FormController title="Blog" />
+      <FormController title="Blog" onSubmit={onSubmit} loading={loading} />
     </div>
   );
 };

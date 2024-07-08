@@ -18,16 +18,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@apollo/client";
-import { CREATE_BLOG } from "@/graphql/mutations";
 
-type FormControllerProps = {
-  title: string;
-};
-
-const formSchema = z.object({
+export const formSchema = z.object({
   title: z.string().min(3, { message: "Must be atleast twenty characters" }),
   description: z
     .string()
@@ -36,13 +28,21 @@ const formSchema = z.object({
   source: z.string().optional(),
 });
 
+type FormControllerProps = {
+  title: string;
+  onSubmit?: (values: z.infer<typeof formSchema>) => void;
+  loading?: boolean;
+};
+
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   return URL.createObjectURL(event.target.files![0]);
 }
 
-const FormController = ({ title }: FormControllerProps) => {
-  const [createBlog, { loading }] = useMutation(CREATE_BLOG);
-  const router = useRouter();
+const FormController = ({
+  title,
+  onSubmit = () => {},
+  loading,
+}: FormControllerProps) => {
   const [preview, setPreview] = useState<string>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,22 +54,6 @@ const FormController = ({ title }: FormControllerProps) => {
       source: "",
     },
   });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    try {
-      await createBlog({
-        variables: {
-          input: values,
-        },
-      });
-      toast.success("Blog created successfully");
-      // router.push("/blog");
-    } catch (error) {
-      toast.error("Could not upload image");
-      console.log("Something went wrong: ", error);
-    }
-  }
 
   return (
     <Form {...form}>

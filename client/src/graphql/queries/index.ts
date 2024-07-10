@@ -26,7 +26,7 @@ export const GET_BLOG = gql`
 
 export const GET_ALL_NEWS = gql`
   query getAllNews {
-    news {
+    getAllNews {
       id
       title
       description
@@ -38,7 +38,7 @@ export const GET_ALL_NEWS = gql`
 
 export const GET_NEWS = gql`
   query getNews($id: ID!) {
-    newsItem(id: $id) {
+    getNews(id: $id) {
       id
       title
       description
@@ -50,7 +50,7 @@ export const GET_NEWS = gql`
 
 export const GET_ALL_FAQS = gql`
   query getAllFaqs {
-    faqs {
+    getFaqs {
       id
       question
       answer

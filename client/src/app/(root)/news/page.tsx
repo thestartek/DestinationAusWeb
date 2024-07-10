@@ -1,11 +1,15 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "News",
+import News from "@/components/shared/News";
+import { client } from "@/lib/utils";
+import { ApolloProvider } from "@apollo/client";
+
+const NewsPage = () => {
+  return (
+    <ApolloProvider client={client}>
+      <News />
+    </ApolloProvider>
+  );
 };
 
-const News = () => {
-  return <div>News</div>;
-};
-
-export default News;
+export default NewsPage;

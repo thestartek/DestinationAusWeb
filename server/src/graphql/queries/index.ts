@@ -1,6 +1,6 @@
-export const userQueries = `#graphql
- getCurrentUser: User
-`;
+// export const userQueries = `#graphql
+//  getCurrentUser: User
+// `;
 
 export const newsQueries = `#graphql
     getAllNews: [News]

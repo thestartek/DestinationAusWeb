@@ -5,7 +5,7 @@ export const newsType = `#graphql
         description: String!
         imageUrl: String
         source: String
-        creator: User
+        # creator: User
         createdAt: String
     }
     input CreateNewsInput {

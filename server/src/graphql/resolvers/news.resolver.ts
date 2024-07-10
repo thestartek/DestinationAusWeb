@@ -25,17 +25,18 @@ export const createNews = async (
   _: any,
   { input }: { input: CreateNewsType }
 ) => {
+  // try {
+  //   const response = await uploadToAzureStorage(input.imageUrl);
   try {
-    const response = await uploadToAzureStorage(input.imageUrl);
-    try {
-      await connectToDB();
-      const news = new News({ ...input, imageUrl: response?.imageUrl });
-      await news.save();
-      return news;
-    } catch (error) {
-      console.log("Error uploading image to azure: ", error);
-    }
+    await connectToDB();
+    const news = new News({ ...input });
+    await news.save();
+    return news;
   } catch (error) {
-    console.log("Error while creating news: ", error);
+    console.log("Error uploading image to azure: ", error);
   }
+  // }
+  //  catch (error) {
+  //   console.log("Error while creating news: ", error);
+  // }
 };

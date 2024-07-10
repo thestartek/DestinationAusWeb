@@ -3,7 +3,7 @@ import { getAllBlogs, createBlog, getBlog } from "./resolvers/blog.resolver.js";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServer } from "@apollo/server";
 import bodyParser from "body-parser";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import path from "path";
 import fs from "fs";
@@ -54,6 +54,19 @@ export async function GraphQL() {
   });
 
   await graphQLServer.start();
+
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "POST, GET, PUT, PATCH, DELETE"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
+    next();
+  });
 
   app.use("/api", upload.single("imageUrl"), expressMiddleware(graphQLServer));
 

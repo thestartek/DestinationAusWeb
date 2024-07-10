@@ -1,6 +1,6 @@
 import { uploadToAzureStorage } from "../../azure/index.js";
 import { connectToDB } from "../../db/index.js";
-import { CreateBlog } from "../../interfaces/index.js";
+import { CreateBlogType } from "../../interfaces/index.js";
 import Blog from "../../models/blog.model.js";
 
 export const getAllBlogs = async () => {
@@ -15,15 +15,16 @@ export const getAllBlogs = async () => {
 export const getBlog = async (id: string) => {
   try {
     await connectToDB();
-    const blog = await Blog.findById(id);
-    console.log("Successfully fetched the selected blog: ", blog);
-    return blog;
+    return await Blog.findById(id);
   } catch (error) {
     console.log("Error while getting blog", error);
   }
 };
 
-export const createBlog = async (_: any, { input }: { input: CreateBlog }) => {
+export const createBlog = async (
+  _: any,
+  { input }: { input: CreateBlogType }
+) => {
   try {
     const response = await uploadToAzureStorage(input.imageUrl);
     try {

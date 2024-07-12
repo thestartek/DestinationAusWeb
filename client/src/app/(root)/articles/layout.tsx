@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const NewsLayout = ({ children }: PropsWithChildren) => {
-  return <Container>{children}</Container>;
+  return <Container className="min-h-[70vh] my-16">{children}</Container>;
 };
 
 export default NewsLayout;

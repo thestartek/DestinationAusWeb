@@ -1,6 +1,6 @@
+import "../globals.css";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import "../globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
@@ -29,9 +29,7 @@ export default function RootLayout({
       <body className={`${manrope.className} bg-slate-100 dark:bg-slate-800`}>
         <Toaster position="bottom-center" richColors />
         <Header />
-        {/* <ApolloProvider client={client}> */}
         {children}
-        {/* </ApolloProvider> */}
         <Footer />
       </body>
     </html>

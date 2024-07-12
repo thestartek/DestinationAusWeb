@@ -24,9 +24,9 @@ export const GET_BLOG = gql`
   }
 `;
 
-export const GET_ALL_NEWS = gql`
-  query getAllNews {
-    getAllNews {
+export const GET_ALL_ARTICLES = gql`
+  query getAllArticles {
+    getAllArticles {
       _id
       title
       description
@@ -36,9 +36,9 @@ export const GET_ALL_NEWS = gql`
   }
 `;
 
-export const GET_NEWS = gql`
-  query getNews($id: ID!) {
-    getNews(id: $id) {
+export const GET_ARTICLE = gql`
+  query getArticle($id: ID!) {
+    getArticle(id: $id) {
       _id
       title
       description

@@ -12,9 +12,9 @@ export const CREATE_BLOG = gql`
   }
 `;
 
-export const CREATE_NEWS = gql`
-  mutation createNews($input: CreateNewsInput!) {
-    createNews(input: $input) {
+export const CREATE_ARTICLE = gql`
+  mutation createArticle($input: CreateArticleInput!) {
+    createArticle(input: $input) {
       _id
       title
       description

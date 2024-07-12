@@ -1,4 +1,3 @@
-import { getAllNews, createNews, getNews } from "./resolvers/news.resolver.js";
 import { getAllBlogs, createBlog, getBlog } from "./resolvers/blog.resolver.js";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServer } from "@apollo/server";
@@ -8,8 +7,13 @@ import cors from "cors";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { blogType, newsType } from "./types/index.js";
+import { blogType, articleType } from "./types/index.js";
 import upload from "../middlewares/upload.middleware.js";
+import {
+  createArticle,
+  getAllArticles,
+  getArticle,
+} from "./resolvers/article.resolver.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,18 +40,18 @@ export async function GraphQL() {
   const graphQLServer = new ApolloServer({
     typeDefs: `
       ${blogType}
-      ${newsType}
+      ${articleType}
      `,
     resolvers: {
       Query: {
         getAllBlogs,
         getBlog,
-        getAllNews,
-        getNews,
+        getAllArticles,
+        getArticle,
       },
       Mutation: {
         createBlog,
-        createNews,
+        createArticle,
       },
     },
     csrfPrevention: true,

@@ -9,6 +9,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { HamburgerMenuDark } from "@/components/ui/hamburger";
+import { NAV_ITEMS } from "@/constants";
 import Link from "next/link";
 
 const MobileMenu = () => {
@@ -20,30 +21,18 @@ const MobileMenu = () => {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle className="flex flex-col gap-4 items-center justify-center">
-            <Link
-              className={`sm:hidden flex ${buttonVariants({
-                variant: "link",
-              })}`}
-              href="/tools"
-            >
-              <DrawerClose>Tools</DrawerClose>
-            </Link>
-            <Link
-              className={`sm:hidden flex ${buttonVariants({
-                variant: "link",
-              })}`}
-              href="/blog"
-            >
-              <DrawerClose>Blog</DrawerClose>
-            </Link>
-            <Link
-              className={`sm:hidden flex ${buttonVariants({
-                variant: "link",
-              })}`}
-              href="/news"
-            >
-              <DrawerClose>News</DrawerClose>
-            </Link>
+            {NAV_ITEMS.map((nav) => (
+              <Link
+                key={nav._id}
+                className={`sm:hidden flex ${buttonVariants({
+                  variant: "link",
+                })}`}
+                href={nav.href}
+              >
+                <DrawerClose>{nav.name}</DrawerClose>
+              </Link>
+            ))}
+
             <Link
               className={buttonVariants({
                 variant: "link",

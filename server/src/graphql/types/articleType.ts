@@ -1,22 +1,22 @@
-export const newsType = `#graphql
-    type News {
+export const articleType = `#graphql
+    type Article {
         _id: ID!
         title: String!
         description: String!
         imageUrl: String!
         source: String
     }
-    input CreateNewsInput {
+    input CreateArticleInput {
         title: String!
         description: String!
         imageUrl: String!
         source: String
     }
     type Query {
-        getAllNews: [News!]
-        getNews(id: ID!): News
+        getAllArticles: [Article!]
+        getArticle(id: ID!): Article
     }
     type Mutation {
-        createNews(input: CreateNewsInput!): News
+        createArticle(input: CreateArticleInput!): Article
     }
 `;

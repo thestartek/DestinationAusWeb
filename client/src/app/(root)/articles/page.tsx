@@ -1,13 +1,13 @@
 "use client";
 
-import News from "@/components/shared/News";
+import Articles from "@/components/shared/Articles";
 import { client } from "@/lib/utils";
 import { ApolloProvider } from "@apollo/client";
 
 const NewsPage = () => {
   return (
     <ApolloProvider client={client}>
-      <News />
+      <Articles />
     </ApolloProvider>
   );
 };

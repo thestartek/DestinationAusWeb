@@ -3,7 +3,7 @@ import styles from "./loader.module.css";
 const Loader = () => {
   return (
     <svg
-      className="w-[6em] h-[6em] mx-auto"
+      className="w-[6em] h-[6em] mx-auto flex items-center justify-center"
       width="240"
       height="240"
       viewBox="0 0 240 240"

@@ -6,7 +6,7 @@ export type BlogType = {
   source: string;
 };
 
-export type NewsType = {
+export type ArticleType = {
   _id: string;
   title: string;
   description: string;

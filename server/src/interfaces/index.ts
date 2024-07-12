@@ -5,7 +5,7 @@ export type CreateBlogType = {
   source?: string;
 };
 
-export type CreateNewsType = {
+export type CreateArticleType = {
   title: string;
   description: string;
   imageUrl: string;

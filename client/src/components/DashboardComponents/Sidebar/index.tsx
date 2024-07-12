@@ -98,11 +98,11 @@ const Sidebar = ({ children }: PropsWithChildren) => {
               }
             />
             <SidebarOption
-              href="/admin/dashboard/news"
+              href="/admin/dashboard/articles"
               icon={<NewsIcon mode="light" />}
-              title="News"
+              title="Article"
               className={
-                pathname === "/admin/dashboard/news"
+                pathname === "/admin/dashboard/article"
                   ? "bg-primary hover:bg-primary"
                   : "links"
               }

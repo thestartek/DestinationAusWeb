@@ -12,6 +12,18 @@ export const CREATE_BLOG = gql`
   }
 `;
 
+export const CREATE_NEWS = gql`
+  mutation createNews($input: CreateNewsInput!) {
+    createNews(input: $input) {
+      _id
+      title
+      description
+      imageUrl
+      source
+    }
+  }
+`;
+
 export const UPDATE_BLOG = gql`
   mutation updateBlog($id: ID!, $payload: UpdateBlog!) {
     updateBlog(id: $id, payload: $payload) {

@@ -9,5 +9,5 @@ export type CreateNewsType = {
   title: string;
   description: string;
   imageUrl: string;
-  source: string;
+  source?: string;
 };

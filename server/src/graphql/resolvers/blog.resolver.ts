@@ -29,7 +29,7 @@ export const createBlog = async (
     const response = await uploadToAzureStorage(input.imageUrl);
     try {
       await connectToDB();
-      const blog = new Blog({ ...input, imageUrl: response?.imageUrl });
+      const blog = new Blog(input);
       await blog.save();
       return blog;
     } catch (error) {

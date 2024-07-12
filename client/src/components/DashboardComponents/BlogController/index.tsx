@@ -1,3 +1,5 @@
+"use client";
+
 import { z } from "zod";
 import FormController, { formSchema } from "../FormController";
 import { toast } from "sonner";
@@ -18,7 +20,9 @@ const BlogController = () => {
         },
       });
       toast.success("Blog created successfully");
-      // router.push("/blog");
+      setTimeout(() => {
+        router.push("/blog");
+      }, 3000);
     } catch (error) {
       toast.error("Could not upload image");
       console.log("Something went wrong: ", error);

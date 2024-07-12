@@ -1,4 +1,3 @@
-import { uploadToAzureStorage } from "../../azure/index.js";
 import { connectToDB } from "../../db/index.js";
 import { CreateNewsType } from "../../interfaces/index.js";
 import News from "../../models/news.model.js";
@@ -25,18 +24,12 @@ export const createNews = async (
   _: any,
   { input }: { input: CreateNewsType }
 ) => {
-  // try {
-  //   const response = await uploadToAzureStorage(input.imageUrl);
   try {
     await connectToDB();
-    const news = new News({ ...input });
+    const news = new News(input);
     await news.save();
     return news;
   } catch (error) {
     console.log("Error uploading image to azure: ", error);
   }
-  // }
-  //  catch (error) {
-  //   console.log("Error while creating news: ", error);
-  // }
 };

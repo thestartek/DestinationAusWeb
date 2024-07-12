@@ -3,15 +3,13 @@ export const newsType = `#graphql
         id: ID!
         title: String!
         description: String!
-        imageUrl: String
+        imageUrl: String!
         source: String
-        # creator: User
-        createdAt: String
     }
     input CreateNewsInput {
         title: String!
         description: String!
-        imageUrl: String
+        imageUrl: String!
         source: String
     }
     type Query {

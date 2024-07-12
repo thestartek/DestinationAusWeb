@@ -4,7 +4,7 @@ export const blogType = `#graphql
         title: String!
         description: String!
         imageUrl: String!
-        source: String!
+        source: String
     }
     input CreateBlogInput {
         title: String!

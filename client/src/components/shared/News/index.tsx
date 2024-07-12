@@ -2,13 +2,14 @@ import { useQuery } from "@apollo/client";
 import { NewsCard } from "../NewsCard";
 import { NewsType } from "@/types";
 import { GET_ALL_NEWS } from "@/graphql/queries";
+import Loader from "@/components/ui/loader";
 
 const News = () => {
   const { data, loading } = useQuery(GET_ALL_NEWS);
   console.log("Client Data: ", data);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

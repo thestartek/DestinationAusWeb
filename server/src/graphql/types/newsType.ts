@@ -1,6 +1,6 @@
 export const newsType = `#graphql
     type News {
-        id: ID!
+        _id: ID!
         title: String!
         description: String!
         imageUrl: String!

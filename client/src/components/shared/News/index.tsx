@@ -13,13 +13,13 @@ const News = () => {
   }
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {data?.getAllNews.map((news: NewsType) => (
         <NewsCard
           key={news._id}
           title={news.title}
           description={news.description}
-          image="/airplane1.svg"
+          image="/blog1.webp"
         />
       ))}
     </main>

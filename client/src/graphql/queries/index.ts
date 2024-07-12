@@ -27,7 +27,7 @@ export const GET_BLOG = gql`
 export const GET_ALL_NEWS = gql`
   query getAllNews {
     getAllNews {
-      id
+      _id
       title
       description
       imageUrl
@@ -39,7 +39,7 @@ export const GET_ALL_NEWS = gql`
 export const GET_NEWS = gql`
   query getNews($id: ID!) {
     getNews(id: $id) {
-      id
+      _id
       title
       description
       imageUrl

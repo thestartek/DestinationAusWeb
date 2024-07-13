@@ -8,9 +8,7 @@ const Container = ({
   className?: string;
 }) => {
   return (
-    <div
-      className={`flex flex-col items-center justify-center gap-2 max-w-7xl mx-auto my-4 ${className}`}
-    >
+    <div className={`flex flex-col gap-2 max-w-7xl mx-auto my-4 ${className}`}>
       {children}
     </div>
   );

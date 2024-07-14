@@ -17,10 +17,11 @@ const Articles = () => {
   }
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 content-center">
+    <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 content-center my-8">
       {data?.getAllArticles.map((article: ArticleType) => (
         <ArticleCard
           key={article._id}
+          _id={article._id}
           title={article.title}
           description={article.description}
           image="/blog1.webp"

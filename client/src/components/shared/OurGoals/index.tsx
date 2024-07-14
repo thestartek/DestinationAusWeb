@@ -16,7 +16,7 @@ const OurGoals = () => {
         <GoalCard flexDirection="flex-row-reverse lg:flex-row" />
       </div>
       <div className="flex items-center justify-center mt-5">
-        <Link href="/blog">
+        <Link href="/blogs">
           <CustomButton icon={<ArrowRight />} title="Explore Blogs" />
         </Link>
       </div>

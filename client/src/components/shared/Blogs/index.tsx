@@ -26,7 +26,7 @@ const Blogs = () => {
     );
 
   return (
-    <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[70vh]">
+    <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[70vh] my-8">
       {blogs?.map((blog: BlogType) => (
         <BlogCard key={blog._id} _id={blog._id} />
       ))}

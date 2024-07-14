@@ -11,7 +11,7 @@ export const getAllArticles = async () => {
   }
 };
 
-export const getArticle = async (id: string) => {
+export const getArticle = async (_: any, { id }: { id: string }) => {
   try {
     await connectToDB();
     return await Article.findById(id);

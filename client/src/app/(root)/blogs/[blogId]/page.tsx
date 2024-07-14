@@ -4,7 +4,7 @@ import Blog from "@/components/shared/SingleBlogPage";
 import { client } from "@/lib/utils";
 import { ApolloProvider } from "@apollo/client";
 
-const SingleBlogPage = ({ params }: { params: { blogId: string } }) => {
+const BlogDetails = ({ params }: { params: { blogId: string } }) => {
   return (
     <ApolloProvider client={client}>
       <Blog blogId={params.blogId} />
@@ -12,4 +12,4 @@ const SingleBlogPage = ({ params }: { params: { blogId: string } }) => {
   );
 };
 
-export default SingleBlogPage;
+export default BlogDetails;

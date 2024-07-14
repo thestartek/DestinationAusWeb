@@ -12,7 +12,7 @@ export const getAllBlogs = async () => {
   }
 };
 
-export const getBlog = async (id: string) => {
+export const getBlog = async (_: any, { id }: { id: string }) => {
   try {
     await connectToDB();
     return await Blog.findById(id);

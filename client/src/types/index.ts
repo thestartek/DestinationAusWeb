@@ -13,3 +13,9 @@ export type ArticleType = {
   imageUrl: string;
   source: string;
 };
+
+export type FAQType = {
+  _id: string;
+  question: string;
+  answer: string;
+};

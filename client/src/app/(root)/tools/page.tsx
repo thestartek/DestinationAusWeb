@@ -1,3 +1,5 @@
+import Container from "@/components/ui/container";
+import { Calculator } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +7,11 @@ export const metadata: Metadata = {
 };
 
 const Tools = () => {
-  return <div>Tools</div>;
+  return (
+    <Container className="min-h-[70vh]">
+      Tools <Calculator />
+    </Container>
+  );
 };
 
 export default Tools;

@@ -15,3 +15,12 @@ export const NAV_ITEMS = [
     href: "/tools",
   },
 ];
+
+export const TOOLS = [
+  {
+    _id: 1,
+    name: "PR Points Calculator",
+    href: "/tools/pr-points-calculator",
+    icon: "📈",
+  },
+];
